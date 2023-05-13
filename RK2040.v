@@ -239,7 +239,8 @@ module RK2040(
     assign addCalcInputA = (addCalcSelectA2) ? {pcInc2[8], pcInc2} : A2b[9:0];       // select addCalc input A as pcInt for relative branching
     assign addCalcInputB = (store2) ? {immediate2[8], immediate2} : B2b[9:0];        // select addCalc input B as immediate for store ops
     assign RT2b = (branchFail) ? 4'b0 : RT2a;                           // dont save branch link if branching fails
-    assign address2 = (bypassAddCalcA2) ? A2b : (addCalcInputA + addCalcInputB);                  // address calculator
+    assign address2 = (bypassAddCalcA2) ? A2b : (addCalcInputA + addCalcInputB);     // address calculator
+    // address calculator is bypassed if operand B is zero, preventing pipeline stalls for forwarding
     
     branchingLogic BRANCH_LOGIC (
         .branch         (branch2),
@@ -290,8 +291,9 @@ module RK2040(
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     assign result3 = (store3) ? B3 : (branch3) ? pcInc3 : (load3) ? memReadData : aluResult;    // result multiplexer
-    assign address3b = (push3) ? B3[9:0] : address3a;
-    assign aluInputA = (push3) ? (24'b111111111111111111111101) : A3;
+    assign address3b = (push3) ? B3[9:0] : address3a;  // use operand B (stack pointer) as address on push instruction
+    // this allows stack pointer to bypass address calculator in stage 2, allowing consecutive pushes without pipeline stall
+    assign aluInputA = (push3) ? (24'b111111111111111111111101) : A3;  // set operand A to -3 on push instruction, to decrement stack pointer
     
     ALU ALU (
         .A              (aluInputA),
