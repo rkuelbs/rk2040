@@ -1,0 +1,13 @@
+020001	//	ADD r1, r0, 0
+020002	//	ADD r2, r0, 0
+120a20  //  comp r2, 10
+ebfe00  //  brlt rel -2
+000211	//	ADD r1, r1, r2
+020122	//	ADD r2, r2, 1
+// start original program
+//020001	//	ADD r1, r0, 0
+//020002	//	ADD r2, r0, 0
+//000211	//	ADD r1, r1, r2
+//020122	//	ADD r2, r2, 1
+//120A20	//	COMP r2, 10
+//6FFC00   //  BRLE rel, -4

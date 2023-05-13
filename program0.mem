@@ -1,0 +1,30 @@
+03FF01 //set r1 to interruptMask value (FF)
+85D901 //store r1 to interruptMask memory location
+021001 //set r1 to intVector5 value (16)
+85E201 //store r1 to intVector5 memory location (994)
+021401 // add r1, r0, 20
+841001 // sw r1, r0(16)
+021601 // add r1, r0, 22
+842001 // sw r1, r0(32)
+020001 //	ADD r1, r0, 0
+020002 //	ADD r2, r0, 0
+000211 //	ADD r1, r1, r2
+020122 //	ADD r2, r2, 1
+120A20 //	COMP r2, 10
+6FFC00 //  BRLE rel, -4
+000000
+7ffe00 // jump -2
+8C0E1E // push1
+8C0E2E // push2
+8C0E3E // push3
+821001 // lw r1, r0(16)
+822002 // lw r2, r0(32)
+000213 // add r3, r1, r2
+843003 // sw r3, r0(48)
+0203EE //
+8800E3 // pop3
+0203EE // 
+8800E2 // pop2
+0203EE //
+8800E1 // pop1
+9C00C0 // reti

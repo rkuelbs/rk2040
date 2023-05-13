@@ -1,0 +1,114 @@
+03FF01 //set r1 to interruptMask value (FF)
+85D901 //store r6 to interruptMask memory location
+025501 //set r1 to intVector5 value (85)
+85E201 //store r1 to intVector5 memory location (994)
+026401 // set r1 to intvector 7 value (100)
+85dc01 // store r1 to intvector7 location (988)
+021401 // add r1, r0, 20
+841001 // sw r1, r0(16)
+021601 // add r1, r0, 22
+842001  // sw r1, r0(32)
+027A01	//	ADD r1, r0, 122
+027F03	//	ADD r3, r0, 127
+002303	//	ADD r3, r0, (r3 <<  2)
+020133	//	ADD r3, r3, 1
+020202	//	ADD r2, r0, 2
+840012	//	SW r2, r1(0)
+020311	//	ADD r1, r1, 3
+100310	//	COMP r1, r3
+6FFC00	//	BRLE r0, relative, -4
+020101	//	ADD r1, r0, 1
+028003	//	ADD r3, r0, 128
+02C804	//	ADD r4, r0, 200
+023944	//	ADD r4, r4, 57
+027F02	//	ADD r2, r0, 127
+002202	//	ADD r2, r0, (r2 <<  2)
+020122	//	ADD r2, r2, 1
+000006	//	ADD r6, r0, r0
+800027	//	LW r7, r2(r0)
+001707	//	ADD r7, r0, (r7 <<  1)
+002777	//	ADD r7, r7, (r7 <<  2)
+000766	//	ADD r6, r6, r7
+020A05	//	ADD r5, r0, 10
+120140	//	COMP r4, 1
+660100	//	BREQ r0, relative, 1
+020045	//	ADD r5, r4, 0
+000007	//	ADD r7, r0, r0
+100560	//	COMP r6, r5
+6A0300	//	BRLT r0, relative, 3
+100566	//	SUB r6, r6, r5
+020177	//	ADD r7, r7, 1
+7FFB00	//	JUMP r0, relative, -5
+840026	//	SW r6, r2(0)
+000035	//	ADD r5, r3, r0
+000006	//	ADD r6, r0, r0
+100050	//	COMP r5, r0
+661A00	//	BREQ r0, relative, 26
+124050	//	COMP r5, 64
+6A0200	//	BRLT r0, relative, 2
+006766	//	ADD r6, r6, (r7 <<  6)
+124055	//	SUB r5, r5, 64
+122050	//	COMP r5, 32
+6A0200	//	BRLT r0, relative, 2
+005766	//	ADD r6, r6, (r7 <<  5)
+122055	//	SUB r5, r5, 32
+121050	//	COMP r5, 16
+6A0200	//	BRLT r0, relative, 2
+004766	//	ADD r6, r6, (r7 <<  4)
+121055	//	SUB r5, r5, 16
+120850	//	COMP r5, 8
+6A0200	//	BRLT r0, relative, 2
+003766	//	ADD r6, r6, (r7 <<  3)
+120855	//	SUB r5, r5, 8
+120450	//	COMP r5, 4
+6A0200	//	BRLT r0, relative, 2
+002766	//	ADD r6, r6, (r7 <<  2)
+120455	//	SUB r5, r5, 4
+120250	//	COMP r5, 2
+6A0200	//	BRLT r0, relative, 2
+001766	//	ADD r6, r6, (r7 <<  1)
+120255	//	SUB r5, r5, 2
+120150	//	COMP r5, 1
+6A0100	//	BRLT r0, relative, 1
+000766	//	ADD r6, r6, r7
+120322	//	SUB r2, r2, 3
+120133	//	SUB r3, r3, 1
+120244	//	SUB r4, r4, 2
+100400	//	COMP r0, r4
+6FCD00	//	BRLE r0, relative, -51
+840016	//	SW r6, r1(0)
+020111	//	ADD r1, r1, 1
+121010	//	COMP r1, 16
+6BC200	//	BRLT r0, relative, -62
+000000
+7e1400
+000000 
+8C0E1E // push 1 // INTERRUPT VECTOR 5
+8C0E2E // push 2
+020001	//	ADD r1, r0, 0
+020002	//	ADD r2, r0, 0
+000211	//	ADD r1, r1, r2
+020122	//	ADD r2, r2, 1
+120A20	//	COMP r2, 10
+6FFC00  //  BRLE rel, -4
+841101 // store r1 to mem address 17
+0203EE
+8800e2  //pop2
+0203ee
+8800e1  //pop1
+9c00c0 //RETI
+000000
+8c0e1e // push 1 // INTERRUPT VECTOR 7
+8c0e2e // push 2
+8c0e3e // push 3
+821001 // lw r1, r0(16)
+822002 // lw r2, r0(32)
+000123 // add r3, r2, r1
+843003 // sw r3, r0(48)
+0203ee
+8800e3 // pop3
+0203EE
+8800e2  //pop2
+0203ee
+8800e1  //pop1
+9c00c0 //reti

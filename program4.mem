@@ -1,0 +1,80 @@
+03FF01 //set r1 to interruptMask value (FF)
+85D901 //store r6 to interruptMask memory location
+023801 //set r1 to intVector5 value
+85E201 //store r1 to intVector5 memory location (994)
+020101
+020202
+020303
+020404
+020505
+020606
+020707
+020808
+020909
+020a0a
+020b0b
+8c0e1e
+8c0e2e
+8c0e3e
+8c0e4e
+8c0e5e
+8c0e6e
+8c0e7e
+8c0e8e
+8c0e9e
+8c0eae
+8c0ebe
+0203ee
+8800e1
+0203ee
+8800e2
+0203ee
+8800e3
+0203ee
+8800e4
+0203ee
+8800e5
+0203ee
+8800e6
+0203ee
+8800e7
+0203ee
+8800e8
+0203ee
+8800e9
+0203ee
+8800ea
+0203ee
+8800eb
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+7e1400
+000000 // INTERRUPT VECTOR 5
+8C0E1E // push 1
+8C0E2E // push 2
+8C0E3E // push 3
+021901  //store 25 to r1
+021e02  //store 30 to r2
+000123  //r3 = r1 + r2
+843003  // store r3, r0(48)
+0203ee
+8800e3  //pop3
+0203ee
+8800e2  //pop2
+0203ee
+8800e1  //pop1
+9c00c0 //RETI
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+000000
+000000
